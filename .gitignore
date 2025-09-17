@@ -1,3 +1,7 @@
 .cph/
-
+*.jar
 .git/
+*.xml
+*.iml
+*.json
+*.exe

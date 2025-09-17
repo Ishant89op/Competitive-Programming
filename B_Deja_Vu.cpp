@@ -45,24 +45,22 @@ public:
         loop(i, 0, q) {
             cin >> x[i];
         }
-        sort(all(x));
-        loop(i, 0, n) {
-            loop(j, 0, q) {
-                int currPower = pow2[i];
-                if(currPower >= x[j]) {
-                    int k = x[j] - 1;
-                    int add = (1 << k);
-                    a[i] += add;
-                    if(k < currPower) {
-                        pow2[i] = k;
+
+        int minX = 31;
+        loop(i, 0, q) {
+            if (x[i] < minX) {
+                int k = x[i] - 1;
+                int add = (1 << k);
+                loop(j, 0, n) {
+                    int currPower = pow2[j];
+                    if (currPower >= x[i]) {
+                        a[j] += add;
+                        pow2[j] = min(pow2[j], k);
                     }
-                } else {
-                    if(j != q-1 && a[j] != a[j+1]) {
-                        break;
-                    } 
                 }
+                minX = x[i];
             }
-        } 
+        }
         loop(i, 0, n) {
             cout << a[i] << " ";
         }
